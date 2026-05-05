@@ -1,0 +1,7 @@
+{
+  "name": "app-academica",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
