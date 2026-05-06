@@ -1,0 +1,20 @@
+ion-input::placeholder,
+ion-textarea::placeholder {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+ion-item {
+  --min-height: 72px;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+ion-item ion-label {
+  margin-bottom: 0.35rem;
+}
+
+ion-item ion-input,
+ion-item ion-textarea {
+  margin-top: 0.25rem;
+}

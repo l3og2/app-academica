@@ -22,6 +22,20 @@ ion-menu.md ion-note {
   padding-left: 10px;
 }
 
+.menu-logo-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 10px;
+}
+
+.menu-logo {
+  max-width: 140px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 ion-menu.md ion-list#inbox-list {
   border-bottom: 1px solid var(--ion-background-color-step-150, #d7d8da);
 }

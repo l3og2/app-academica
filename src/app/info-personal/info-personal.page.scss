@@ -1,0 +1,62 @@
+.profile-card-row {
+  align-items: center;
+  min-height: 160px;
+}
+
+.profile-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.profile-info-col ion-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  align-items: center;
+}
+
+.profile-info-col ion-card-header,
+.profile-info-col p,
+.profile-info-col ion-card-title,
+.profile-location {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.profile-info-col ion-card-subtitle {
+  font-size: 0.95rem;
+}
+
+.profile-info-col ion-card-title {
+  font-size: 1.75rem;
+}
+
+.profile-location {
+  margin-top: 0.65rem;
+  color: var(--ion-color-medium);
+  font-size: 1rem;
+  align-self: center;
+}
+
+.profile-info-col ion-card-content {
+  font-size: 1.05rem;
+}
+
+.upload-avatar-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  color: var(--ion-color-primary);
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.upload-avatar-label ion-icon {
+  font-size: 1.05rem;
+}
