@@ -15,18 +15,18 @@
       <ion-row class="profile-card-row">
         <ion-col size="12" class="profile-info-col">
           <ion-card-header class="ion-no-padding">
-            <ion-card-subtitle>TSU en Informática | Estudiante de Ing. (7mo Semestre)</ion-card-subtitle>
-            <ion-card-title>Leonardo Gonzalez</ion-card-title>
+            <ion-card-subtitle>{{ miPerfil.tituloCorto }}</ion-card-subtitle>
+            <ion-card-title>{{ miPerfil.nombre }} Gonzalez</ion-card-title>
           </ion-card-header>
           <p class="profile-location">
-            <ion-icon name="location-outline"></ion-icon> Guarenas, Edo. Miranda
+            <ion-icon name="location-outline"></ion-icon> {{ miPerfil.ubicacion }}
           </p>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <ion-card-content>
-      Soy un Desarrollador Full Stack con un perfil atípico y de alto valor: cuento con más de 15 años de trayectoria como analista contable en el sector público y privado. Esta base me permite entender a fondo el modelo de negocio detrás de cada línea de código. Me apasiona construir sistemas para automatizar procesos administrativos y el análisis de datos.
+      {{ miPerfil.descripcion }}
     </ion-card-content>
   </ion-card>
 
@@ -35,14 +35,10 @@
   
   <ion-card>
     <ion-card-content>
-      <!-- Usamos Badges (Etiquetas) para que se vea como un portafolio de verdad -->
       <div class="tech-badges">
-        <ion-badge color="danger" class="ion-margin-end ion-margin-bottom">Angular</ion-badge>
-        <ion-badge color="tertiary" class="ion-margin-end ion-margin-bottom">TypeScript</ion-badge>
-        <ion-badge color="success" class="ion-margin-end ion-margin-bottom">Node.js</ion-badge>
-        <ion-badge color="primary" class="ion-margin-end ion-margin-bottom">React (MERN)</ion-badge>
-        <ion-badge color="warning" class="ion-margin-end ion-margin-bottom">MongoDB</ion-badge>
-        <ion-badge color="medium" class="ion-margin-end ion-margin-bottom">Linux Mint / Debian</ion-badge>
+        @for (habilidad of miPerfil.habilidades; track habilidad) {
+          <ion-badge color="primary" class="ion-margin-end ion-margin-bottom">{{ habilidad }}</ion-badge>
+        }
       </div>
     </ion-card-content>
   </ion-card>
@@ -51,20 +47,15 @@
   <h2 style="padding-left: 10px; font-weight: bold;">Más Allá del Teclado</h2>
   
   <ion-list lines="none">
-    <ion-item>
-      <ion-icon name="accessibility-outline" slot="start" color="primary"></ion-icon>
-      <ion-label>
-        <h3>Equilibrio y Enfoque</h3>
-        <p>Practicante de Tai Chi y entrenamiento funcional para mantener la mente afilada.</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="people-outline" slot="start" color="tertiary"></ion-icon>
-      <ion-label>
-        <h3>Familia y Raíces</h3>
-        <p>Hombre de familia. Disfruto desconectarme en los ríos y playas, y de un buen plato tradicional venezolano rodeado de los míos.</p>
-      </ion-label>
-    </ion-item>
+    @for (pasatiempo of miPerfil.pasatiempos; track pasatiempo.titulo) {
+      <ion-item>
+        <ion-icon [name]="pasatiempo.icono" slot="start" [color]="pasatiempo.color"></ion-icon>
+        <ion-label>
+          <h3>{{ pasatiempo.titulo }}</h3>
+          <p>{{ pasatiempo.descripcion }}</p>
+        </ion-label>
+      </ion-item>
+    }
   </ion-list>
 
 </ion-content>

@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 // Importamos TODOS los componentes visuales que usa el menú de Ionic
 import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet } from '@ionic/angular/standalone';
+
+// Importamos el servicio de navegación y su interfaz
+import { NavegacionService, PaginaMenu } from './services/navegacion.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  standalone: true, // ¡Nuestra arquitectura moderna!
-  // Aquí declaramos el arsenal:
+  standalone: true,
   imports: [RouterLink, RouterLinkActive, IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet],
 })
-export class AppComponent {
-  
-  // Renombramos nuestra variable a 'appPages' porque así la está buscando el HTML por defecto
-  public appPages = [
-    { title: 'Inicio', url: '/inicio', icon: 'home' },
-    { title: 'Información Personal', url: '/info-personal', icon: 'person' },
-    { title: 'Contacto', url: '/contacto', icon: 'mail' },
-  ];
+export class AppComponent implements OnInit {
 
-  // Agregamos esta variable vacía para que el HTML no se queje de que falta
-  public labels = []; 
+  /** Páginas del menú lateral, obtenidas desde el servicio */
+  public appPages: PaginaMenu[] = [];
 
-  constructor() {}
+  /** Labels secundarios del menú */
+  public labels: string[] = [];
+
+  constructor(private navegacionService: NavegacionService) {}
+
+  ngOnInit(): void {
+    // Cargamos los datos desde el servicio centralizado
+    this.appPages = this.navegacionService.obtenerPaginas();
+    this.labels = this.navegacionService.obtenerLabels();
+  }
 }

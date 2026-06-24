@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-// AQUÍ ESTÁ LA MAGIA: Importamos absolutamente TODO lo que usa el HTML
+// Importamos los componentes visuales de Ionic
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonIcon, IonLabel, IonGrid, IonRow, IonCol, IonAvatar, IonBadge } from '@ionic/angular/standalone';
 
-interface PerfilEstudiante {
-  nombre: string;
-  carrera: string;
-  semestre: number;
-  habilidades: string[];
-}
+// Importamos el servicio de perfil y sus interfaces
+import { PerfilService, PerfilCompleto } from '../services/perfil.service';
 
 @Component({
   selector: 'app-info-personal',
   templateUrl: './info-personal.page.html',
   styleUrls: ['./info-personal.page.scss'],
   standalone: true,
-  // Le inyectamos la lista de componentes al decorador
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonIcon, IonLabel, IonGrid, IonRow, IonCol, IonAvatar, IonBadge]
 })
 export class InfoPersonalPage implements OnInit {
 
-  public miPerfil: PerfilEstudiante = {
-    nombre: 'Leonardo',
-    carrera: 'Ingeniería en Informática',
-    semestre: 7,
-    habilidades: ['Angular', 'TypeScript', 'Node.js', 'React (MERN)', 'MongoDB', 'Linux']
-  };
+  /** Perfil completo del profesional */
+  public miPerfil!: PerfilCompleto;
 
-  constructor() { }
+  constructor(private perfilService: PerfilService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // Cargamos el perfil desde el servicio centralizado
+    this.perfilService.obtenerPerfilCompleto().subscribe(perfil => {
+      this.miPerfil = perfil;
+    });
+  }
 }

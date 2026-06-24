@@ -8,6 +8,7 @@ ion-item {
   --min-height: 72px;
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
+  transition: border-color 0.2s ease;
 }
 
 ion-item ion-label {
@@ -18,3 +19,35 @@ ion-item ion-input,
 ion-item ion-textarea {
   margin-top: 0.25rem;
 }
+
+/* ── Feedback visual de campos inválidos ── */
+ion-item.input-invalido {
+  --border-color: var(--ion-color-danger) !important;
+  --highlight-color-focused: var(--ion-color-danger) !important;
+}
+
+ion-item.input-invalido ion-label {
+  color: var(--ion-color-danger) !important;
+}
+
+/* ── Transición suave del botón ── */
+ion-button {
+  transition: opacity 0.2s ease;
+}
+
+ion-button[disabled] {
+  opacity: 0.7;
+}
+
+/* ── Animación del spinner durante el envío ── */
+ion-spinner {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Estilo para el toast personalizado ── */
+ion-toast::part(container) {
+  border-radius: 8px;
+  font-weight: 500;
+}
+

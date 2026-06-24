@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'app-academica',
+  appId: 'com.finnovavzla.appacademica',
+  appName: 'FinnovaVzla Portfolio',
   webDir: 'www'
 };
 

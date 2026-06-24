@@ -49,34 +49,49 @@
       <!-- Usamos fill="solid" o "outline" para darle un estilo moderno a los inputs de Ionic -->
       
       <!-- Campo Nombre -->
-      <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-item fill="outline" class="ion-margin-bottom" [class.input-invalido]="campoInvalido('nombre')">
         <ion-label position="floating">Nombre completo</ion-label>
         
-        <ion-input type="text" placeholder="Ej. Juan Pérez"></ion-input>
+        <ion-input type="text" placeholder="Ej. Juan Pérez" [(ngModel)]="datosFormulario.nombre" [disabled]="enviando"></ion-input>
         <ion-icon name="person-outline" slot="end" color="medium"></ion-icon>
       </ion-item>
 
       <!-- Campo Correo -->
-      <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-item fill="outline" class="ion-margin-bottom" [class.input-invalido]="campoInvalido('email')">
         <ion-label position="floating">Correo electrónico</ion-label>
-        <ion-input type="email" placeholder="tu@correo.com"></ion-input>
+        <ion-input type="email" placeholder="tu@correo.com" [(ngModel)]="datosFormulario.email" [disabled]="enviando"></ion-input>
         <ion-icon name="at-outline" slot="end" color="medium"></ion-icon>
       </ion-item>
 
       <!-- Campo Mensaje (Textarea para textos largos) -->
-      <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-item fill="outline" class="ion-margin-bottom" [class.input-invalido]="campoInvalido('mensaje')">
         <ion-label position="floating">¿En qué te puedo ayudar?</ion-label>
-        <ion-textarea [autoGrow]="true" rows="4" placeholder="Describe tu requerimiento aquí..."></ion-textarea>
+        <ion-textarea [autoGrow]="true" rows="4" placeholder="Describe tu requerimiento aquí..." [(ngModel)]="datosFormulario.mensaje" [disabled]="enviando"></ion-textarea>
       </ion-item>
 
       <!-- Botón de Envío -->
       <!-- 'expand="block"' hace que el botón ocupe todo el ancho disponible. Excelente para móviles -->
-      <ion-button expand="block" color="primary" shape="round" class="ion-margin-top">
-        <ion-icon name="paper-plane-outline" slot="start"></ion-icon>
+      <ion-button expand="block" color="primary" shape="round" class="ion-margin-top" (click)="enviarMensaje()" [disabled]="enviando">
+        @if (enviando) {
+          <ion-spinner name="crescent" slot="start"></ion-spinner>
+          Enviando...
+        } @else {
+          <ion-icon name="paper-plane-outline" slot="start"></ion-icon>
         Enviar Mensaje
+        }
       </ion-button>
 
     </ion-card-content>
   </ion-card>
 
 </ion-content>
+
+<!-- Toast de notificación para feedback al usuario -->
+<ion-toast
+  [isOpen]="mostrarToast"
+  [message]="mensajeToast"
+  [color]="colorToast"
+  [duration]="4000"
+  position="bottom"
+  (didDismiss)="mostrarToast = false">
+</ion-toast>
